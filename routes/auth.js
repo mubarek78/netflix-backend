@@ -5,11 +5,12 @@ const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", async (req, res) => {
+    let {username, email, password} = req.body
   const newUser = new User({
-    username: req.body.username,
-    email: req.body.email,
+    username: username,
+    email: email,
     password: CryptoJS.AES.encrypt(
-      req.body.password,
+      password,
       process.env.SECRET_KEY
     ).toString(),
   });
@@ -23,14 +24,15 @@ router.post("/register", async (req, res) => {
 
 //LOGIN
 router.post("/login", async (req, res) => {
+    let {username, email, password} = req.body
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await User.findOne({ email: email });
     !user && res.status(401).json("Wrong password or username!");
 
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.SECRET_KEY);
     const originalPassword = bytes.toString(CryptoJS.enc.Utf8);
 
-    originalPassword !== req.body.password &&
+    originalPassword !== password &&
       res.status(401).json("Wrong password or username!");
 
     const accessToken = jwt.sign(
