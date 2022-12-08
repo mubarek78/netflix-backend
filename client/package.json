@@ -11,6 +11,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.25.0",
     "movie-trailer": "^2.1.0",
+    "node": "^19.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^8.0.5",
@@ -46,5 +47,4 @@
       "last 1 safari version"
     ]
   }
-  
 }
