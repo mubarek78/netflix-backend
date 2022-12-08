@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { login } from "../../features/apiCalls";
+import login from "../../features/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import "./login.css";
 
